@@ -1,15 +1,9 @@
-import express, { Request, Response, NextFunction } from "express";
-
+import express, { Request, Response} from "express";
+import { addCustomVariable } from "./middlewares/add-custom-variable";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-
-export const addCustomVariable = (req: Request, res: Response, next: NextFunction) => {
-  req.customVariable = "This is a custom variable!";
-  next();
-};
-
 app.use(addCustomVariable);
 
 app.get("/", (req: Request, res: Response) => {
